@@ -29,20 +29,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.toggleTodo = this.toggleTodo.bind(this);
     this.setVisibilityFilter = this.setVisibilityFilter.bind(this);
   }
-
-  toggleTodo(id) {
-    const { todos } = this.state;
-
-    this.setState({
-      todos: todos.map(todo =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    });
-  }
-
 
   setVisibilityFilter(filter) {
     this.setState({
@@ -56,10 +44,7 @@ class App extends React.Component {
     return (
       <div>
         <AddTodo />
-        <TodoList
-          todos={getVisibleTodos(todos, filter)}
-          toggleTodo={this.toggleTodo}
-        />
+        <TodoList todos={getVisibleTodos(todos, filter)} />
         <Footer
           filter={filter}
           setVisibilityFilter={this.setVisibilityFilter}
